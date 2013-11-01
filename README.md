@@ -5,6 +5,8 @@ So, I was doing some tutorials from the kivy docs, and decided to share the resu
 
 This repo is for testing kivy. All kivy-related trash goes here too.
 
+![alt text](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png "WTFPL")
+
 Run apps on android
 -------------------
 I made a simple script to automate the launching of kivy apps on android. It's tested and working in bash and zsh.
