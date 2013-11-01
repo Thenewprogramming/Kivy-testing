@@ -2,7 +2,7 @@
 
 <Ball>:
     size: 50, 50
-    center: root.center
+    center: self.parent.center
     canvas:
         Color:
             rgb: 1, 0, 0
@@ -30,12 +30,12 @@
             width: 10
 
     Label:
-        text: "0"
+        text: str(paddle_left.score)
         font_size: 80
         center: root.center_x / 2, root.top - 100
 
     Label:
-        text: "0"
+        text: str(paddle_right.score)
         font_size: 80
         center: root.center_x / 2 * 3, root.top - 100
 

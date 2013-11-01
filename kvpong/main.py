@@ -14,28 +14,34 @@ class Ball(Widget):
 
     def serve(self):
         self.center = self.parent.center
-        print(self.center)
         self.vel = Vector(4, 0).rotate(randint(0, 360))
 
     def move(self):
         self.pos = Vector(*self.vel) + self.pos
 
-        if self.x <= 0 or self.right >= self.parent.width:
-            self.vel_x *= -1
-
         if self.y <= 0 or self.top >= self.parent.height:
             self.vel_y *= -1
 
+        if self.x < 0:
+            self.parent.paddle_left.score += 1
+            self.serve()
+        elif self.right > self.parent.width:
+            self.parent.paddle_right.score += 1
+            self.serve()
+
 class Paddle(Widget):
+    score = NumericProperty(0)
+
     def bounce(self):
         if self.collide_widget(self.parent.ball):
-            self.parent.ball.vel_x = -1
+            ball = self.parent.ball
+            ball.vel = Vector(ball.vel_x * -1, ball.vel_y) * 1.1
 
 class Root(Widget):
     def update(self, idk):
         self.ball.move()
-        #self.paddle_left.bounce()
-        #self.paddle_right.bounce()
+        self.paddle_left.bounce()
+        self.paddle_right.bounce()
 
     def on_touch_move(self, touch):
         if touch.x < self.center_x:
