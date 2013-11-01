@@ -1,0 +1,3 @@
+title=KvPong
+author=mid-kid
+orientation=landscape

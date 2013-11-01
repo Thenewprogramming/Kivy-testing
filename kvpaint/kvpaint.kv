@@ -1,0 +1,19 @@
+#:kivy 1.7.2
+
+<Text>:
+    text: "Dit is wat text"
+    font_size: 30
+    size: 10, 10
+    center: self.parent.center
+
+Widget:
+    text: Text
+    paint: Paint
+    clearbtn: Clearbtn
+    Text:
+        id: Text
+    Paint:
+        id: Paint
+    Button:
+        id: Clearbtn
+        text: "Clear"

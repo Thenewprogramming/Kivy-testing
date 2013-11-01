@@ -1,0 +1,3 @@
+title=KvPaint
+author=mid-kid
+orientation=landscape

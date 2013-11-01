@@ -1,0 +1,53 @@
+#:kivy 1.7.2
+
+<Ball>:
+    size: 50, 50
+    center: root.center
+    canvas:
+        Color:
+            rgb: 1, 0, 0
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<Paddle>:
+    size: 25, 200
+    canvas:
+        Color:
+            rgb: 0, 1, 0
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Root>:
+    ball: ball
+    paddle_left: paddle_left
+    paddle_right: paddle_right
+
+    canvas:
+        Line:
+            points: [self.center_x, 0, self.center_x, self.height]
+            width: 10
+
+    Label:
+        text: "0"
+        font_size: 80
+        center: root.center_x / 2, root.top - 100
+
+    Label:
+        text: "0"
+        font_size: 80
+        center: root.center_x / 2 * 3, root.top - 100
+
+    Ball:
+        id: ball
+
+    Paddle:
+        id: paddle_left
+        x: 0
+        center_y: root.center_y
+
+    Paddle:
+        id: paddle_right
+        right: root.width
+        center_y: root.center_y

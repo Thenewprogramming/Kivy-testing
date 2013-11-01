@@ -1,0 +1,37 @@
+# Tested and working on both bash and zsh
+# Needs kivy launcher installed on device
+
+KIVY=/sdcard/kivy
+PREFIX=krun
+
+print(){ echo "[$PREFIX] $@"; }
+PROJECT_NAME=$(grep "title=" android.txt 2> /dev/null | sed -e "s/title=//")
+PROJECT_DIR=$KIVY/$PROJECT_NAME
+ADB_IP=$1
+
+if [ ! $PROJECT_NAME ]; then
+    print "Not a kivy for android project, exiting..."
+    exit 1
+fi
+
+print "Waiting for device..."
+if [ $ADB_IP ]; then
+    adb connect $ADB_IP
+fi
+adb wait-for-device
+
+print "(Re)Creating directories..."
+adb shell rm -rf $PROJECT_DIR
+adb shell mkdir -p $PROJECT_DIR
+
+for FILE in *; do
+    print "Sending $FILE..."
+    adb push $FILE $PROJECT_DIR
+done
+
+print "(Re)Starting $PROJECT_NAME..."
+adb shell am force-stop org.kivy.pygame
+adb shell am start -d $PROJECT_DIR -a org.renpy.LAUNCH org.kivy.pygame/org.renpy.android.PythonActivity
+
+print "Starting logcat..."
+adb logcat -s "python"
