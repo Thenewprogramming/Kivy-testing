@@ -1,0 +1,3 @@
+title=KvChat
+author=mid-kid
+orientation=portrait

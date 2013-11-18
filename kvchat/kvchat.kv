@@ -1,0 +1,44 @@
+#:kivy 1.7.2
+
+<Message>:
+    size_hint_y: None
+    size: label.size
+
+    AutosizeLabel:
+        id: label
+        pos: root.pos
+        width: root.width
+        text: root.text
+
+GridLayout:
+    grid: grid
+    input: input
+
+    cols: 1
+
+    GridLayout:
+        size_hint_y: None
+        height: 40  #TODO: Use font height.
+        rows: 1
+
+        TextInput:
+            id: input
+            multiline: False
+
+        Button:
+            size_hint_x: None
+            width: 50
+            height: 30
+            text: "Send"
+            on_press: app.send()
+
+    ScrollView:
+        do_scroll_x: False
+
+        GridLayout:
+            id: grid
+            cols: 1
+            size_hint_y: None
+            minimum_height: self.height
+            padding: 10
+            spacing: 1
