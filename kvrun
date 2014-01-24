@@ -2,7 +2,7 @@
 # Needs kivy launcher installed on device
 
 KIVY=/sdcard/kivy
-PREFIX=krun
+PREFIX=kvrun
 
 print(){ echo "[$PREFIX] $@"; }
 PROJECT_NAME=$(grep "title=" android.txt 2> /dev/null | sed -e "s/title=//")
