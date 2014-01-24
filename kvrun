@@ -16,7 +16,7 @@ if [ ! "$PROJECT_NAME" ]; then
 fi
 
 if [ ! "$PROJECT_DIRNAME" ]; then
-    PROJECT_DIR=$KIVY/$PROJECT_DIRNAME
+    PROJECT_DIR=$KIVY/$PROJECT_NAME
 fi
 
 print "Waiting for device..."
@@ -31,7 +31,7 @@ adb shell mkdir -p $PROJECT_DIR
 
 for FILE in *; do
     print "Sending $FILE..."
-    adb push $FILE $PROJECT_DIR
+    adb push $FILE $PROJECT_DIR/$FILE
 done
 
 print "(Re)Starting $PROJECT_NAME..."
