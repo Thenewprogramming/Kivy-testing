@@ -6,12 +6,17 @@ PREFIX=kvrun
 
 print(){ echo "[$PREFIX] $@"; }
 PROJECT_NAME=$(grep "title=" android.txt 2> /dev/null | sed -e "s/title=//")
-PROJECT_DIR=$KIVY/$PROJECT_NAME
+PROJECT_DIRNAME=$(grep "dir=" android.txt 2> /dev/null | sed -e "s/dir=//")
+PROJECT_DIR=$KIVY/$PROJECT_DIRNAME
 ADB_IP=$1
 
-if [ ! $PROJECT_NAME ]; then
+if [ ! "$PROJECT_NAME" ]; then
     print "Not a kivy for android project, exiting..."
     exit 1
+fi
+
+if [ ! "$PROJECT_DIRNAME" ]; then
+    PROJECT_DIR=$KIVY/$PROJECT_DIRNAME
 fi
 
 print "Waiting for device..."
